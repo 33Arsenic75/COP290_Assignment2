@@ -12,7 +12,6 @@ import Landing from './home/home'
 import Game from './game';
 import CupGame from './cupgame';
 import MemoryMatchingGame from './memorymatching';
-
 class App extends Component {
   render() {
     return (

@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+.grid{
+    font-family: 'Anton', sans-serif;
+    width : 400px ; 
+    height : 400px ; 
+    border: 10px solid black;
+    display: grid ; 
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat( 4 , 1fr ) ; 
+    flex-wrap: wrap ;
+    background-color :  #d9b38c;
+    row-gap: 5px ;
+    column-gap : 5px ; 
+    margin : 10px auto ; 
+}
+body{
+    font-family: 'Anton', sans-serif;
+    text-align: center ;
+}
+.zero{
+    background-color: blanchedalmond;
+}
+.grid div{
+  
+  font-size : 50px ; 
+  display: flex ;
+  justify-content: center ;
+  align-items: center;
+  font-weight : bold ; 
+}
+#result , #score , .score-title{
+    padding-top : 10px ; 
+    font-size:  60px ;
+}
+
+.two{
+  background-color: lightgrey ;
+}
+
+.four{
+    background-color: lightgreen;
+
+}
+
+.eight{
+  background-color: lightsalmon;
+}
+
+.sixteen{
+  background-color: pink ;
+}
+
+.thirtytwo{
+    background-color: orange ;
+}
+
+.sixtyfour{
+    background-color: red ;
+
+}
+
+.onetwentyeight{
+    background-color:  rgb(255, 255, 0);
+}
+
+.twofiftysix{
+    background-color: yellowgreen;
+}
+
+.fivetwelve{
+    background-color: turquoise;
+}
+
+.thousand{
+  background-color: violet;
+}
+
+.twothousand{
+  background-color:  gold ;
+}
