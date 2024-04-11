@@ -12,6 +12,7 @@ import Landing from './home/home'
 import Game from './game';
 import CupGame from './cupgame';
 import MemoryMatchingGame from './memorymatching';
+import MyComponent from './trial'
 class App extends Component {
   render() {
     return (
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path='/game' element={<Game />}></Route>  
           <Route path='/cupgame' element={<CupGame />}></Route>  
           <Route path='/memorymatching' element={<MemoryMatchingGame />}></Route>  
+          <Route path='/trial' element={<MyComponent />}></Route>  
         </Routes>
       </Router>
     );
