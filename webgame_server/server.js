@@ -145,6 +145,16 @@ app.post('/memorygame', (req, res) => {
     res.status(200).send({score});
 });
 
+app.post('/numberpuzzle', (req, res) => {
+    const { movecount, timeElapsed } = req.body;
+    console.log('Move Count:', movecount);
+    console.log('timeElapsed:', timeElapsed);
+
+    var score = movecount*2 - timeElapsed;
+
+    res.status(200).send({score});
+});
+
 app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
 });
