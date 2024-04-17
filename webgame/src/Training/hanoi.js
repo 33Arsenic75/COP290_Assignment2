@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./hanoi.css";
 import moveSoundFile from "./move-sound.mp3";
+
 const App = () => {
   const [moveSound] = useState(new Audio(moveSoundFile));
+  const [gameWon, setGameWon] = useState(false);
   const [moveCount, setMoveCount] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [dragId, setDragId] = useState();
   const [tiles, setTiles] = useState([
     {
@@ -29,20 +32,18 @@ const App = () => {
       column: 1,
       row: 4,
       width: 8
-    },
-    {
-      id: "Tile-5",
-      column: 1,
-      row: 5,
-      width: 10
-    },
-    {
-      id: "Tile-6",
-      column: 1,
-      row: 6,
-      width: 12
     }
   ]);
+
+  useEffect(() => {
+    let interval;
+    if (!gameWon) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [gameWon]);
 
   const handleDrag = (ev) => {
     const dragTile = tiles.find((tile) => tile.id === ev.currentTarget.id);
@@ -55,6 +56,9 @@ const App = () => {
     } else {
       ev.preventDefault();
     }
+    if (isGameWon(tiles)) {
+      setGameWon(true);
+    }
   };
 
   const handleDrop = (ev) => {
@@ -65,8 +69,7 @@ const App = () => {
       .filter((tile) => tile.column.toString() === dropColumn.toString())
       .sort((a, b) => a.width - b.width)[0];
 
-    let newTileState = tiles;
-
+    let newTileState = tiles.slice();
     if (!dropColumnTopTile || dragTile.width < dropColumnTopTile.width) {
       newTileState = tiles.map((tile) => {
         if (tile.id === dragTile.id) {
@@ -88,6 +91,30 @@ const App = () => {
   const column3Tiles = tiles.filter((tile) => tile.column === 3);
 
   const winCondition = tiles.every((tile) => tile.column === 3);
+  useEffect(() => {
+    const sendData = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/hanoi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    moves: moveCount,
+                    timeTaken: timer,
+                }),
+            });
+            const responseData = await response.json(); // Get response as text
+            console.log('Response from server:', responseData.score); // Log response data
+        } catch (error) {
+            console.error('Error sending data:', error);
+        }
+    };
+
+    if (gameWon) {
+      sendData();
+  }
+}, [gameWon, moveCount, timer]);
   return (
     <>
       <div className="App">
@@ -200,9 +227,15 @@ const App = () => {
           </div>
         )}
         Move count: {moveCount}
+        <br />
+        Time: {timer} seconds
       </div>
     </>
   );
 };
+
+function isGameWon(tiles) {
+  return tiles.every((tile) => tile.column === 1);
+}
 
 export default App;

@@ -185,6 +185,33 @@ app.post('/memorygame', (req, res) => {
     res.status(200).send({score});
 });
 
+app.post('/numberpuzzle', (req, res) => {
+    const { moves, timeTaken } = req.body;
+    console.log('Received moves:',moves);
+    console.log('Received timetaken:', timeTaken);
+
+    var score = moves*2 - timeTaken;
+
+    res.status(200).send({score});
+});
+
+app.post('/hanoi', (req, res) => {
+    const { moves, timeTaken } = req.body;
+    console.log('Received moves:',moves);
+    console.log('Received timetaken:', timeTaken);
+
+    var score = moves*2 - timeTaken;
+
+    res.status(200).send({score});
+});
+
+app.post('/EightQueen', (req, res) => {
+    const { queensPlaced } = req.body;
+    console.log('Queens Places:',queensPlaced);
+    var score = queensPlaced*2;
+    res.status(200).send({score});
+});
+
 app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
 });

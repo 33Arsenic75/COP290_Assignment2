@@ -104,8 +104,9 @@ const MemoryGame = () => {
                 console.error('Error sending data:', error);
             }
         };
-
-        sendData();
+        if(winner){
+            sendData();
+        }
     }, [rightMatches, wrongMatches]);
 
     return (
