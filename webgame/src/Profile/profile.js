@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import './profile.css'
 import Questionnaire from '../Quiz/Questionnaire';
 import Popup from 'reactjs-popup';
-import userData from '../../../webgame_server/data.json';
 
 export default function Profile() {
     const [userData, setUserData] = useState({ message: "", username: "", age: "" });
@@ -19,26 +18,10 @@ export default function Profile() {
     useEffect(() => {
         fetch("http://localhost:8000/profile")
             .then((res) => res.json())
-            .then((data) => setUserData({ message: data.message, username: data.username, age: data.age }));
-    }, []);
-    useEffect(() => {
-        const username1 = username;
-        console("Inside useeffect",username1); // Replace with the actual username or get it dynamically
-        fetch("../../../webgame_server/data.json")
-            .then((res) => res.json())
-            .then((data) => {
-                const userGameData = data[username1];
-                const userGameScores = {
-                    eightqueen: userGameData.eightqueen,
-                    hanoi: userGameData.hanoi,
-                    numberpuzzle: userGameData.numberpuzzle
-                };
-                setUserData(userGameData);
-                setGameScores(userGameScores);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
+            .then((data) => setUserData({ message: data.message, username: data.username, age: data.age, score: data.score,
+                                        hanoi : data.hanoi,
+                                        eightQueen : data.eightqueen,
+                                        numberpuzzle : data.numberpuzzle}));
     }, []);
     return (
         <div>
@@ -61,6 +44,9 @@ export default function Profile() {
                         <div className='col-md-6'>
                             <div style={{fontSize: `1.5em`}}>⌛ HISTORY </div>
                             <hr/>
+                            <div>
+                                {userData.hanoi}
+                            </div>
                         </div>
                         </div>
                     </div>

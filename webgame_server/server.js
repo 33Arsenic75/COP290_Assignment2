@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const e = require('cors');
 
 const app = express();
 
@@ -118,9 +119,10 @@ app.get('/profile', (req, res) => {
             return res.status(404).json({ success: false, message: "User not found" });
         }
 
-        const { age, score } = user;
+        const { age, score, hanoi, numberpuzzle, eightqueen } = user;
+        // console.log("User profile retrieved successfully:", username_logged, age, score, eightqueen, hanoi, numberpuzzle);
 
-        res.json({ message: "Why fit in when you were born to stand out!", username: username_logged, age: age, score:score });
+        res.json({ message: "Why fit in when you were born to stand out!", username: username_logged, age: age, score:score, hanoi:hanoi, numberpuzzle:numberpuzzle, eightqueen:eightqueen});
     });
 });
 
@@ -143,8 +145,6 @@ app.post('/profile', (req, res) => {
             console.error("Error parsing JSON data:", error);
             return res.status(500).json({ success: false, message: "Internal Server Error" });
         }
-
-        // Update the user's score in the userData object
         if (userData[username_logged]) {
             userData[username_logged].score = totalPoints;
         } else {
