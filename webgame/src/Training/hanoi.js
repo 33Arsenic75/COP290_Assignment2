@@ -20,19 +20,20 @@ const App = () => {
       column: 1,
       row: 2,
       width: 4
-    },
-    {
-      id: "Tile-3",
-      column: 1,
-      row: 3,
-      width: 6
-    },
-    {
-      id: "Tile-4",
-      column: 1,
-      row: 4,
-      width: 8
     }
+    // ,
+    // {
+    //   id: "Tile-3",
+    //   column: 1,
+    //   row: 3,
+    //   width: 6
+    // },
+    // {
+    //   id: "Tile-4",
+    //   column: 1,
+    //   row: 4,
+    //   width: 8
+    // }
   ]);
 
   useEffect(() => {
@@ -111,7 +112,7 @@ const App = () => {
         }
     };
 
-    if (gameWon) {
+    if (winCondition) {
       sendData();
   }
 }, [gameWon, moveCount, timer]);

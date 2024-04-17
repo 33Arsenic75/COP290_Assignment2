@@ -63,6 +63,12 @@ const NumberPuzzle = () => {
     setMoveCount(0);
     setTimer(0);
   }
+  function handleCheatCode() {
+    const correctOrder = Array.from({ length: 15 }, (_, index) => index + 1);
+    correctOrder.push(null);
+    setNumbers(correctOrder);
+    setGameWon(true);
+  }
 
   const renderCell = (number, index) => {
     return (
@@ -128,6 +134,7 @@ const NumberPuzzle = () => {
         <div>Move Count: {moveCount}</div>
         <div>Timer: {timer} seconds</div>
         <button onClick={handleReset}>Reset</button>
+        <button onClick={handleCheatCode}>Cheat Code</button>
       </div>
       {gameWon && (
         <div className="win-modal">
