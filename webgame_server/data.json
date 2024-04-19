@@ -32,13 +32,13 @@
     "numberpuzzle": -1,
     "memory": 10,
     "hanoimoves": 15,
-    "hanoitime": 35,
+    "hanoitime": 26,
     "eightqueen": 8,
     "numberpuzzlemoves": 164,
     "numberpuzzletime": 103,
     "memoryright": 8,
     "memmorywrong": 16,
-    "memorywrong": 7
+    "memorywrong": 6
   },
   "": {
     "hanoimoves": 15,

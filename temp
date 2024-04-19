@@ -3,3 +3,10 @@
 2. Focus:- eightqueen, Hanoi
 3. Patience:- Hanoi, Numberpuzzle...., eightqueen
 4. Hyperactivity:- Memory Game Incorrect, Numberpuzzle ....
+
+
+Changes:-
+1. Remove Hello Bitches, profile.js
+2. training center background and overlap of text and colour
+3. Make success/failure sound same for everygame
+4. Add a button to go to training center directly after playing a Game
